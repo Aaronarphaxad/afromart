@@ -26,11 +26,11 @@ const Home = ({ products, bannerData }) => {
         ))}
       </div>
       <div>
-        <Link href="/shop">
+        {/* <Link href="/shop">
           <button type="button" className="btn">
             Shop by category
           </button>
-        </Link>
+        </Link> */}
       </div>
       <FooterBanner footerBanner={bannerData && bannerData[0]} />
     </>

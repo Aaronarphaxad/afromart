@@ -14,8 +14,13 @@ import {
 const ProductDetails = ({ product, products }) => {
   const { image, name, price, details, available } = product;
   const [index, setIndex] = useState(0);
-  const { incQty, decQty, qty, onAdd } = useStateContext();
+  const { incQty, decQty, qty, onAdd, setShowCart } = useStateContext();
 
+  const handleBuyNow = () => {
+    onAdd(product, qty);
+
+    setShowCart(true);
+  };
   return (
     <div className="">
       <div className="product-detail-container">
@@ -77,7 +82,7 @@ const ProductDetails = ({ product, products }) => {
               {" "}
               Add to Cart
             </button>
-            <button type="button" className="buy-now">
+            <button type="button" className="buy-now" onClick={handleBuyNow}>
               {" "}
               Buy Now
             </button>
@@ -93,9 +98,7 @@ const ProductDetails = ({ product, products }) => {
               ?.filter((item) => item?.category === product?.category)
               .map((item, i) => (
                 <>
-                  <ErrorBoundary>
-                    <ProductCardComponent key={item._id} product={item} />
-                  </ErrorBoundary>
+                  <ProductCardComponent key={item._id} product={item} />
                 </>
               ))}
           </div>
